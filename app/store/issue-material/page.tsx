@@ -2,34 +2,24 @@ import {
   Barcode,
   Bell,
   BookOpenCheck,
-  Boxes,
-  BriefcaseBusiness,
-  Building2,
   CalendarDays,
   ChevronDown,
   CircleDollarSign,
-  ClipboardList,
-  FileText,
   Gauge,
   HardHat,
   History,
-  Home,
   Layers3,
   Minus,
   Package,
   PackageCheck,
   Plus,
-  RotateCcw,
   ScanLine,
   Search,
   Send,
   Settings,
   ShieldCheck,
-  SlidersHorizontal,
   Trash2,
-  Truck,
   Users,
-  WalletCards,
   Wrench,
 } from "lucide-react"
 
@@ -49,24 +39,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarHeader,
-  SidebarInset,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
-  SidebarProvider,
-  SidebarRail,
-  SidebarTrigger,
-} from "@/components/ui/sidebar"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
 import { cn } from "@/lib/utils"
@@ -139,33 +112,11 @@ const cartItems = [
   ["4", "Gloves", "GL-001", "Pair", "260", "20", "32.00", "640.00"],
 ]
 
-const navItems = [
-  { label: "Dashboard", icon: Home, href: "/dashboard" },
-  { label: "Projects", icon: BriefcaseBusiness, href: "/dashboard" },
-  { label: "Store", icon: PackageCheck, href: "/store/issue-material", active: true },
-  { label: "Labor", icon: HardHat, href: "/dashboard" },
-  { label: "Materials", icon: Boxes, href: "/dashboard" },
-  { label: "Expenses", icon: WalletCards, href: "/dashboard" },
-  { label: "Delivery", icon: Truck, href: "/dashboard" },
-  { label: "Documents", icon: FileText, href: "/dashboard" },
-  { label: "Reports", icon: ClipboardList, href: "/dashboard" },
-  { label: "Settings", icon: Settings, href: "/dashboard" },
-]
-
-const storeSubItems = [
-  { label: "Issue Material", icon: Send, href: "/store/issue-material", active: true },
-  { label: "Return Material", icon: RotateCcw, href: "/store/issue-material" },
-  { label: "Stock Overview", icon: SlidersHorizontal, href: "/store/issue-material" },
-]
-
 export default function IssueMaterialPage() {
   return (
-    <SidebarProvider className="min-h-svh bg-slate-50 text-slate-950">
-      <StoreSidebar />
-      <SidebarInset className="min-w-0 bg-slate-50">
-        <header className="sticky top-0 z-20 border-b bg-white/95 backdrop-blur">
-          <div className="flex h-20 items-center gap-4 px-4 md:px-6">
-            <SidebarTrigger className="shrink-0" />
+    <div className="min-h-svh bg-slate-50 text-slate-950">
+      <header className="sticky top-0 z-20 border-b bg-white/95 backdrop-blur">
+        <div className="flex h-20 items-center gap-4 px-4 md:px-6">
             <div className="mr-auto min-w-0">
               <h1 className="truncate text-xl font-semibold tracking-normal md:text-2xl">
                 Issue Material (POS)
@@ -202,93 +153,17 @@ export default function IssueMaterialPage() {
               <ChevronDown className="hidden size-4 text-slate-500 xl:block" />
             </div>
           </div>
-        </header>
+      </header>
 
-        <main className="p-4 md:p-6">
-          <div className="grid w-full gap-4 2xl:grid-cols-[22rem_minmax(0,1fr)_19rem]">
-            <MaterialSearch />
-            <IssueCart />
-            <IssueDetails />
-          </div>
-          <WorkflowStrip />
-        </main>
-      </SidebarInset>
-    </SidebarProvider>
-  )
-}
-
-function StoreSidebar() {
-  return (
-    <Sidebar
-      className="border-r-0 [--sidebar:#071521] [--sidebar-accent:#102337] [--sidebar-accent-foreground:#fff] [--sidebar-border:#1e3346] [--sidebar-foreground:#fff]"
-      collapsible="icon"
-    >
-      <SidebarHeader className="p-4">
-        <div className="flex items-center gap-3">
-          <div className="grid size-10 place-items-center rounded-lg bg-white/10 ring-1 ring-white/15">
-            <Building2 className="size-6 text-sky-200" />
-          </div>
-          <div className="min-w-0 text-white group-data-[collapsible=icon]:hidden">
-            <div className="truncate text-base font-semibold tracking-wide">FAB SHOP</div>
-            <div className="truncate text-xs text-slate-300">Project OS</div>
-          </div>
+      <main className="p-4 md:p-6">
+        <div className="grid w-full gap-4 2xl:grid-cols-[28rem_minmax(0,1fr)_20rem]">
+          <MaterialSearch />
+          <IssueCart />
+          <IssueDetails />
         </div>
-      </SidebarHeader>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <SidebarMenu className="gap-2">
-              {navItems.map((item) => (
-                <SidebarMenuItem key={item.label}>
-                  <SidebarMenuButton
-                    isActive={item.active}
-                    className="h-10 rounded-lg text-slate-200 hover:bg-white/10 hover:text-white data-active:bg-blue-600 data-active:text-white"
-                  >
-                    <item.icon />
-                    <span>{item.label}</span>
-                  </SidebarMenuButton>
-                  {item.label === "Store" && (
-                    <SidebarMenuSub className="my-1 gap-1 border-white/10">
-                      {storeSubItems.map((subItem) => (
-                        <SidebarMenuSubItem key={subItem.label}>
-                          <SidebarMenuSubButton
-                            isActive={subItem.active}
-                            className="text-slate-300 data-active:bg-blue-700/70 data-active:text-white hover:bg-white/10 hover:text-white"
-                          >
-                            <subItem.icon />
-                            <span>{subItem.label}</span>
-                          </SidebarMenuSubButton>
-                        </SidebarMenuSubItem>
-                      ))}
-                    </SidebarMenuSub>
-                  )}
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-      <SidebarFooter className="p-4">
-        <div className="rounded-lg border border-white/15 bg-white/5 p-4 text-white group-data-[collapsible=icon]:hidden">
-          <div className="text-xs font-medium text-slate-300">Store Stock Value</div>
-          <div className="mt-3 text-2xl font-semibold">Rs 18,76,540</div>
-          <div className="mt-5 grid grid-cols-2 gap-3 text-xs">
-            <div>
-              <div className="text-slate-400">Total Items</div>
-              <div className="mt-1 font-semibold">236</div>
-            </div>
-            <div>
-              <div className="text-slate-400">Low Stock Items</div>
-              <div className="mt-1 font-semibold text-red-300">14</div>
-            </div>
-          </div>
-          <Button variant="outline" className="mt-4 h-9 w-full border-white/15 bg-transparent text-white hover:bg-white/10">
-            View Stock Overview
-          </Button>
-        </div>
-      </SidebarFooter>
-      <SidebarRail />
-    </Sidebar>
+        <WorkflowStrip />
+      </main>
+    </div>
   )
 }
 
@@ -316,44 +191,48 @@ function MaterialSearch() {
           />
           <ScanLine className="absolute right-3 top-1/2 size-5 -translate-y-1/2 text-slate-500" />
         </div>
-        <div className="flex gap-2 overflow-x-auto pb-1">
-          {materialFilters.map((filter) => (
-            <Button
-              key={filter}
-              variant={filter === "All" ? "default" : "secondary"}
-              size="sm"
-              className={cn(
-                "h-9 rounded-lg px-4",
-                filter === "All" && "bg-blue-600 hover:bg-blue-700"
-              )}
-            >
-              {filter}
-            </Button>
-          ))}
-        </div>
-        <div className="max-h-[38rem] space-y-0 overflow-y-auto pr-1">
-          {materials.map((material) => (
-            <div key={material.name} className="flex items-center gap-3 border-t py-4 first:border-t-0">
-              <div className={cn("grid size-14 shrink-0 place-items-center rounded-lg", material.tone)}>
-                <material.icon className="size-7" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="truncate font-semibold">{material.name}</div>
-                <div className="mt-1 truncate text-xs text-slate-500">{material.code}</div>
-                <div className="mt-1 font-semibold">{material.price}</div>
-              </div>
-              <div className="hidden text-xs md:block">
-                <Badge className="bg-emerald-100 text-emerald-700" variant="secondary">
-                  In Stock
-                </Badge>
-                <div className="mt-2 text-slate-600">Available: {material.stock}</div>
-              </div>
-              <Button variant="outline" size="icon" className="size-9 rounded-lg border-blue-200 text-blue-700">
-                <Plus className="size-5" />
+        <ScrollArea className="w-full pb-2">
+          <div className="flex w-max gap-2">
+            {materialFilters.map((filter) => (
+              <Button
+                key={filter}
+                variant={filter === "All" ? "default" : "secondary"}
+                size="sm"
+                className={cn(
+                  "h-9 rounded-lg px-4",
+                  filter === "All" && "bg-blue-600 hover:bg-blue-700"
+                )}
+              >
+                {filter}
               </Button>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </ScrollArea>
+        <ScrollArea className="h-[38rem] pr-3">
+          <div className="space-y-0">
+            {materials.map((material) => (
+              <div key={material.name} className="flex items-center gap-3 border-t py-4 first:border-t-0">
+                <div className={cn("grid size-14 shrink-0 place-items-center rounded-lg", material.tone)}>
+                  <material.icon className="size-7" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="truncate font-semibold">{material.name}</div>
+                  <div className="mt-1 truncate text-xs text-slate-500">{material.code}</div>
+                  <div className="mt-1 font-semibold">{material.price}</div>
+                </div>
+                <div className="hidden text-xs md:block">
+                  <Badge className="bg-emerald-100 text-emerald-700" variant="secondary">
+                    In Stock
+                  </Badge>
+                  <div className="mt-2 text-slate-600">Available: {material.stock}</div>
+                </div>
+                <Button variant="outline" size="icon" className="size-9 rounded-lg border-blue-200 text-blue-700">
+                  <Plus className="size-5" />
+                </Button>
+              </div>
+            ))}
+          </div>
+        </ScrollArea>
       </CardContent>
     </Card>
   )
@@ -372,7 +251,7 @@ function IssueCart() {
         </Button>
       </CardHeader>
       <CardContent className="flex min-h-[34rem] flex-col p-0">
-        <div className="overflow-x-auto">
+        <ScrollArea className="w-full">
           <table className="w-full min-w-[650px] text-left text-sm">
             <thead className="bg-slate-50 text-xs font-medium text-slate-600">
               <tr>
@@ -415,7 +294,7 @@ function IssueCart() {
               ))}
             </tbody>
           </table>
-        </div>
+        </ScrollArea>
         <div className="mt-auto border-t p-5">
           <div className="mb-4 font-semibold">Cart Summary</div>
           <div className="grid gap-3 md:grid-cols-3">

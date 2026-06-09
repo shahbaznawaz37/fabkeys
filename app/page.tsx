@@ -16,9 +16,9 @@ export default function LoginPage() {
     <main className="min-h-svh overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.16),transparent_30%),radial-gradient(circle_at_top_right,rgba(16,185,129,0.16),transparent_24%),linear-gradient(180deg,#f8fbff_0%,#eef3f8_100%)] px-4 py-6 text-slate-950 sm:px-6 sm:py-10">
       <section className="mx-auto flex min-h-[calc(100svh-3rem)] w-full max-w-7xl items-center justify-center sm:min-h-[calc(100svh-5rem)]">
         <div className="relative w-full overflow-hidden rounded-[28px] border border-white/80 bg-white/80 p-5 shadow-[0_24px_80px_-36px_rgba(15,23,42,0.42)] backdrop-blur-sm sm:p-8 lg:p-10">
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(15,23,42,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.055)_1px,transparent_1px)] bg-[size:48px_48px] opacity-60 [mask-image:linear-gradient(180deg,black,transparent_92%)]" />
-          <div className="pointer-events-none absolute -left-12 top-6 size-52 rounded-full bg-blue-400/20 blur-3xl" />
-          <div className="pointer-events-none absolute bottom-0 right-0 size-64 rounded-full bg-emerald-400/18 blur-3xl" />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(15,23,42,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.055)_1px,transparent_1px)] [mask-image:linear-gradient(180deg,black,transparent_92%)] bg-[size:48px_48px] opacity-60" />
+          <div className="pointer-events-none absolute top-6 -left-12 size-52 rounded-full bg-blue-400/20 blur-3xl" />
+          <div className="pointer-events-none absolute right-0 bottom-0 size-64 rounded-full bg-emerald-400/18 blur-3xl" />
 
           <div className="relative grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
             <BrandPanel />
@@ -33,8 +33,8 @@ export default function LoginPage() {
 function BrandPanel() {
   return (
     <div className="relative hidden overflow-hidden rounded-[24px] bg-[#071521] p-6 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] sm:p-8 lg:block lg:p-10">
-      <div className="absolute -left-16 top-16 size-56 rounded-full bg-blue-500/20 blur-3xl" />
-      <div className="absolute bottom-0 right-0 size-56 rounded-full bg-emerald-400/16 blur-3xl" />
+      <div className="absolute top-16 -left-16 size-56 rounded-full bg-blue-500/20 blur-3xl" />
+      <div className="absolute right-0 bottom-0 size-56 rounded-full bg-emerald-400/16 blur-3xl" />
 
       <div className="relative flex min-h-[34rem] flex-col">
         <div className="flex items-center gap-3">
@@ -57,11 +57,11 @@ function BrandPanel() {
           </div>
 
           <div className="mt-8 max-w-xl">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-200 ring-1 ring-white/15">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold tracking-[0.22em] text-slate-200 uppercase ring-1 ring-white/15">
               <ShieldCheck className="size-4 text-emerald-300" />
               Secure Workspace
             </div>
-            <h1 className="mt-6 text-3xl font-semibold leading-tight tracking-normal sm:text-4xl">
+            <h1 className="mt-6 text-3xl leading-tight font-semibold tracking-normal sm:text-4xl">
               Fabrication projects, costs, labor, and delivery notes in one
               operating system.
             </h1>
@@ -103,7 +103,7 @@ function LoginPanel() {
           </div>
         </div>
 
-        <span className="inline-flex rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-500 shadow-sm">
+        <span className="inline-flex rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-[11px] font-semibold tracking-[0.3em] text-slate-500 uppercase shadow-sm">
           Account Login
         </span>
         <h2 className="mt-6 text-3xl font-semibold tracking-normal text-slate-950 sm:text-4xl">
@@ -189,3 +189,4 @@ function LoginPanel() {
     </div>
   )
 }
+//1

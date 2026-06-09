@@ -71,7 +71,7 @@ function BrandPanel() {
         <div className="grid grid-cols-3 gap-3">
           {[
             { value: "12", label: "Active Projects", icon: PackageCheck },
-            { value: "₹18.7L", label: "Month Cost", icon: CircleDollarSign },
+            { value: "Rs 18.7L", label: "Month Cost", icon: CircleDollarSign },
             { value: "8", label: "Labor Teams", icon: HardHat },
           ].map((item) => (
             <div

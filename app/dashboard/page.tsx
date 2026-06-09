@@ -15,7 +15,6 @@ import {
   Gauge,
   HardHat,
   Home,
-  IndianRupee,
   Menu,
   Package,
   Printer,
@@ -57,17 +56,17 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
 
 const navItems = [
-  { label: "Dashboard", icon: Home, active: true },
-  { label: "Projects", icon: BriefcaseBusiness },
-  { label: "Cost Tracking", icon: ChartNoAxesColumnIncreasing },
-  { label: "Materials", icon: Package },
-  { label: "Labor", icon: HardHat },
-  { label: "Expenses", icon: WalletCards },
-  { label: "Documents", icon: Folder },
-  { label: "Delivery Notes", icon: Truck },
-  { label: "Gate Pass", icon: ShieldCheck },
-  { label: "Reports", icon: ReceiptText },
-  { label: "Settings", icon: Settings },
+  { label: "Dashboard", icon: Home, href: "/dashboard", active: true },
+  { label: "Projects", icon: BriefcaseBusiness, href: "/dashboard" },
+  { label: "Cost Tracking", icon: ChartNoAxesColumnIncreasing, href: "/dashboard" },
+  { label: "Store", icon: Package, href: "/store/issue-material" },
+  { label: "Labor", icon: HardHat, href: "/dashboard" },
+  { label: "Expenses", icon: WalletCards, href: "/dashboard" },
+  { label: "Documents", icon: Folder, href: "/dashboard" },
+  { label: "Delivery Notes", icon: Truck, href: "/dashboard" },
+  { label: "Gate Pass", icon: ShieldCheck, href: "/dashboard" },
+  { label: "Reports", icon: ReceiptText, href: "/dashboard" },
+  { label: "Settings", icon: Settings, href: "/dashboard" },
 ]
 
 const stats = [
@@ -101,14 +100,14 @@ const stats = [
   },
   {
     label: "Total Cost",
-    value: "₹ 18,76,540",
+    value: "Rs 18,76,540",
     helper: "View details",
-    icon: IndianRupee,
+    icon: CircleDollarSign,
     tone: "blue",
   },
   {
     label: "Profit",
-    value: "₹ 4,35,210",
+    value: "Rs 4,35,210",
     helper: "23.2% of revenue",
     icon: CircleDollarSign,
     tone: "emerald",
@@ -121,8 +120,8 @@ const projects = [
     name: "Warehouse Structure",
     client: "ABC Infra Pvt Ltd",
     progress: 65,
-    budget: "₹ 12,50,000",
-    actual: "₹ 8,45,000",
+    budget: "Rs 12,50,000",
+    actual: "Rs 8,45,000",
     status: "In Progress",
   },
   {
@@ -130,8 +129,8 @@ const projects = [
     name: "Pipe Rack System",
     client: "Reliance Industries",
     progress: 40,
-    budget: "₹ 8,75,000",
-    actual: "₹ 3,20,000",
+    budget: "Rs 8,75,000",
+    actual: "Rs 3,20,000",
     status: "In Progress",
   },
   {
@@ -139,8 +138,8 @@ const projects = [
     name: "Platform & Handrail",
     client: "Tata Projects",
     progress: 80,
-    budget: "₹ 6,20,000",
-    actual: "₹ 5,30,000",
+    budget: "Rs 6,20,000",
+    actual: "Rs 5,30,000",
     status: "In Progress",
   },
   {
@@ -148,8 +147,8 @@ const projects = [
     name: "Structural Steel Work",
     client: "Larsen & Toubro",
     progress: 25,
-    budget: "₹ 15,00,000",
-    actual: "₹ 3,60,000",
+    budget: "Rs 15,00,000",
+    actual: "Rs 3,60,000",
     status: "Delayed",
   },
   {
@@ -157,16 +156,16 @@ const projects = [
     name: "Conveyor Support",
     client: "Vedanta Ltd",
     progress: 100,
-    budget: "₹ 4,80,000",
-    actual: "₹ 4,55,000",
+    budget: "Rs 4,80,000",
+    actual: "Rs 4,55,000",
     status: "Delivered",
   },
 ]
 
 const costRows = [
-  { label: "Labor Cost", amount: "₹ 6,45,000", percent: "34.4%", color: "bg-blue-600" },
-  { label: "Material Cost", amount: "₹ 9,80,000", percent: "52.2%", color: "bg-emerald-500" },
-  { label: "Other Expenses", amount: "₹ 2,51,540", percent: "13.4%", color: "bg-orange-400" },
+  { label: "Labor Cost", amount: "Rs 6,45,000", percent: "34.4%", color: "bg-blue-600" },
+  { label: "Material Cost", amount: "Rs 9,80,000", percent: "52.2%", color: "bg-emerald-500" },
+  { label: "Other Expenses", amount: "Rs 2,51,540", percent: "13.4%", color: "bg-orange-400" },
 ]
 
 const activities = [
@@ -266,7 +265,6 @@ function AppSidebar() {
               {navItems.map((item) => (
                 <SidebarMenuItem key={item.label}>
                   <SidebarMenuButton
-                    tooltip={item.label}
                     isActive={item.active}
                     className={cn(
                       "h-10 rounded-lg text-slate-200 hover:bg-white/10 hover:text-white data-active:bg-blue-600 data-active:text-white",
@@ -385,7 +383,7 @@ function CostSummary() {
         <CardTitle className="text-sm">Cost Summary (This Month)</CardTitle>
       </CardHeader>
       <CardContent className="grid items-center gap-5 sm:grid-cols-[10rem_1fr] xl:grid-cols-1 2xl:grid-cols-[10rem_1fr]">
-        <Donut label="Total Cost" value="₹ 18,76,540" />
+        <Donut label="Total Cost" value="Rs 18,76,540" />
         <div className="space-y-3">
           {costRows.map((row) => (
             <div key={row.label} className="grid grid-cols-[1fr_auto] items-center gap-x-3 gap-y-1 text-xs">
@@ -432,10 +430,10 @@ function RecentActivities() {
 
 function ProjectCost() {
   const rows = [
-    ["Labor Cost", "₹ 4,00,000", "₹ 2,85,000", "₹ 1,15,000", "71%", "bg-blue-600"],
-    ["Material Cost", "₹ 6,50,000", "₹ 4,80,000", "₹ 1,70,000", "74%", "bg-emerald-500"],
-    ["Other Expenses", "₹ 2,00,000", "₹ 80,000", "₹ 1,20,000", "40%", "bg-orange-500"],
-    ["Total", "₹ 12,50,000", "₹ 8,45,000", "₹ 4,05,000", "68%", "bg-slate-400"],
+    ["Labor Cost", "Rs 4,00,000", "Rs 2,85,000", "Rs 1,15,000", "71%", "bg-blue-600"],
+    ["Material Cost", "Rs 6,50,000", "Rs 4,80,000", "Rs 1,70,000", "74%", "bg-emerald-500"],
+    ["Other Expenses", "Rs 2,00,000", "Rs 80,000", "Rs 1,20,000", "40%", "bg-orange-500"],
+    ["Total", "Rs 12,50,000", "Rs 8,45,000", "Rs 4,05,000", "68%", "bg-slate-400"],
   ]
 
   return (
@@ -451,9 +449,9 @@ function ProjectCost() {
       <CardContent className="space-y-4 px-4 py-4">
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {[
-            ["Budget", "₹ 12,50,000"],
-            ["Actual Cost", "₹ 8,45,000"],
-            ["Balance", "₹ 4,05,000"],
+            ["Budget", "Rs 12,50,000"],
+            ["Actual Cost", "Rs 8,45,000"],
+            ["Balance", "Rs 4,05,000"],
             ["Progress", "65%"],
           ].map(([label, value]) => (
             <div key={label} className="rounded-lg border p-3">
@@ -520,9 +518,9 @@ function LaborEntry() {
         <Field label="Category" value="Welding" wide />
         <div className="grid grid-cols-2 gap-3">
           <Field label="Hours" value="8" />
-          <Field label="Rate (per hour)" value="₹ 350" />
+          <Field label="Rate (per hour)" value="Rs 350" />
         </div>
-        <Field label="Total" value="₹ 2,800" wide strong />
+        <Field label="Total" value="Rs 2,800" wide strong />
         <Field label="Remarks" value="Welding of column base plate" wide />
       </CardContent>
     </Card>

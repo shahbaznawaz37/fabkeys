@@ -41,7 +41,6 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
 } from "@/components/ui/select"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
@@ -275,7 +274,7 @@ export default function IssueMaterialPage() {
   }
 
   return (
-    <div className="flex h-svh flex-col bg-slate-50 text-slate-950">
+    <div className="flex h-svh flex-col overflow-hidden bg-slate-50 text-slate-950">
       <header className="shrink-0 border-b bg-white/95 backdrop-blur">
         <div className="flex h-20 items-center gap-4 px-4 md:px-6">
           <div className="mr-auto min-w-0">
@@ -324,7 +323,7 @@ export default function IssueMaterialPage() {
         </div>
       </header>
 
-      <main className="flex min-h-0 flex-1 flex-col gap-4 p-4 md:p-6">
+      <main className="flex min-h-0 flex-1 flex-col gap-4 overflow-hidden p-4 md:p-6">
         <div className="grid min-h-0 flex-1 gap-4 2xl:grid-cols-[28rem_minmax(0,1fr)_20rem]">
           <MaterialSearch
             activeFilter={activeFilter}
@@ -615,7 +614,8 @@ function IssueDetails({
   issueMaterial: () => void
 }) {
   return (
-    <aside className="flex min-h-0 flex-col gap-3">
+    <ScrollArea className="min-h-0">
+      <aside className="flex min-h-0 flex-col gap-3 pr-3">
       <Card className="shrink-0 rounded-lg border-blue-200 py-0 shadow-sm">
         <CardHeader className="px-4 py-4">
           <CardTitle className="text-lg text-blue-950">Issue Details</CardTitle>
@@ -624,7 +624,7 @@ function IssueDetails({
           <FieldLabel label="Project" required>
             <Select value={project} onValueChange={setProject}>
               <SelectTrigger className="h-11 w-full rounded-lg">
-                <SelectValue />
+                <span className="truncate">{project}</span>
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="P-1001 | Warehouse Structure">P-1001 | Warehouse Structure</SelectItem>
@@ -639,7 +639,7 @@ function IssueDetails({
           <FieldLabel label="Work Stage (Optional)">
             <Select value={stage} onValueChange={setStage}>
               <SelectTrigger className="h-11 w-full rounded-lg">
-                <SelectValue />
+                <span className="truncate">{stage}</span>
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="Fabrication">Fabrication</SelectItem>
@@ -651,7 +651,7 @@ function IssueDetails({
           <FieldLabel label="Issued By" required>
             <Select value={issuedBy} onValueChange={setIssuedBy}>
               <SelectTrigger className="h-11 w-full rounded-lg">
-                <SelectValue />
+                <span className="truncate">{issuedBy}</span>
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="Amit Sharma">Amit Sharma</SelectItem>
@@ -701,11 +701,11 @@ function IssueDetails({
         </CardContent>
       </Card>
 
-      <Card className="min-h-0 flex-1 rounded-lg py-0 shadow-sm">
+      <Card className="shrink-0 rounded-lg py-0 shadow-sm">
         <CardHeader className="px-4 py-4">
           <CardTitle className="text-lg">Summary</CardTitle>
         </CardHeader>
-        <CardContent className="flex h-full flex-col space-y-4 px-4 pb-4">
+        <CardContent className="space-y-4 px-4 pb-4">
           {[
             ["Total Items", `${totals.projectItems + totals.miscItems}`],
             ["Total Quantity", `${totals.quantity}`],
@@ -722,7 +722,7 @@ function IssueDetails({
             </div>
           )}
           <Button
-            className="mt-auto h-12 w-full rounded-lg bg-blue-600 text-base hover:bg-blue-700"
+            className="h-12 w-full rounded-lg bg-blue-600 text-base hover:bg-blue-700"
             onClick={issueMaterial}
           >
             <Send className="size-4" />
@@ -730,7 +730,8 @@ function IssueDetails({
           </Button>
         </CardContent>
       </Card>
-    </aside>
+      </aside>
+    </ScrollArea>
   )
 }
 
